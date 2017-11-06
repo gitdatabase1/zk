@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='zk'>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+	<meta name="format-detection" content="telephone=no,email=no">
+	<meta http-equiv="X-UA-Compatible" content="Ie=Edge,chrome=1.0">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="icon/iconfont.css">
+	<script src="angular.min.js"></script>
+</head>
+<body>
+	<div class="box">
+		<header>
+			<span>北京市</span>
+			<span>途虎养车</span>
+			<span><li class='iconfont'>&#xe62f;</li>
+			<li>搜索</li></span>
+			<span><li class='iconfont'>&#xe636;</li><li>客服</li></span>
+		</header>
+		<section ng-controller='asj'>
+			<ul class='top'>
+				<li><img src="images/2_03.jpg" alt=""><p>换轮胎</p><span>精确保养</span></li>
+				<li><img src="images/2_05.jpg" alt=""><p>换轮胎</p><span>精确保养</span></li>
+				<li><img src="images/2_07.jpg" alt=""><p>换轮胎</p><span>精确保养</span></li>
+				<li><img src="images/2_09.jpg" alt=""><p>换轮胎</p><span>精确保养</span></li>
+			</ul>
+			<div class='tian'></div>
+			<div class='main'>
+				<ul class='one'ng-repeat='val in list'>
+					<li><img ng-src="{{val[0].img}}" alt=""><span>{{val[0].span}}</span></li>
+					<li><img ng-src="{{val[0].img}}" alt=""><span>{{val[0].span}}</span></li>
+					<li><img ng-src="{{val[0].img}}" alt=""><span>{{val[0].span}}</span></li>
+					<li><img ng-src="{{val[0].img}}" alt=""><span>{{val[0].span}}</span></li>
+				</ul>
+			</div>
+			<div class='img'><img src="images/2_43.jpg" alt=""></div>
+		</section>
+		<footer>
+			<ul>
+				<li><i class='iconfont'>&#xe65b;</i><span>首页</span></li>
+				<li><i class='iconfont'>&#xe65a;</i><span>轮胎</span></li>
+				<li><i class='iconfont'>&#xe608;</i><span>门店</span></li>
+				<li><i class='iconfont'>&#xe62e;</i><span>我的</span></li>
+			</ul>
+		</footer>
+	</div>
+	<script>
+		var app=angular.module('zk',[])
+		app.controller("asj",function($scope,$http){
+			$scope.arr='';
+			$http({
+				url:'http://localhost:8080/index',
+				method:'get'
+			}).then(function(res){
+				console.log(res.data)
+				$scope.list=res.data;
+			})
+		})
+	</script>
+</body>
+</html>
